@@ -19,6 +19,7 @@
         <activity
             android:name=".Activity.LoginActivity"
             android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateHidden"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.MainActivity"
