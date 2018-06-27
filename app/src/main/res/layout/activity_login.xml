@@ -32,7 +32,8 @@
             android:layout_marginTop="40dp"
             android:hint="请输入您的IP"
             android:textColorHint="@color/colorAccent"
-            android:background="@drawable/tv_radiuborder"/>
+            android:paddingLeft="50dp"
+            android:background="#999999"/>
 
         <ImageView
             android:layout_width="wrap_content"

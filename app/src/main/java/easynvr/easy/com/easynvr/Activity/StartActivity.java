@@ -2,18 +2,13 @@ package easynvr.easy.com.easynvr.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import java.util.Map;
 
 import easynvr.easy.com.easynvr.R;
 import easynvr.easy.com.easynvr.Tool.SharedHelper;
 
-public class StartActivity extends AppCompatActivity {
+public class StartActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

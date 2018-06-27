@@ -26,9 +26,26 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation 'com.android.support:design:26.1.0'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.1'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'   // RxLifecycle
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.1.0'
+    // Android使用的库，里面使用了Android的生命周期方法
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
+    // Android组件库，里面定义了例如RxAppCompatActivity、RxFragment之类的Android组件
+
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'    // Retrofit到Gson进行转换的库
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'   // Retrofit到RxJava进行转换的库
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+
+    implementation 'com.android.support:support-v4:26.1.0'
     testImplementation 'junit:junit:4.12'
+
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
