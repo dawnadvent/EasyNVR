@@ -6,10 +6,17 @@
 
     <string name="toast_network_error">网络连接异常，请检查网络</string>
 
+    <string name="welcome">欢迎使用EasyNVR</string>
+    <string name="ip_tint">请您输入IP名</string>
+    <string name="port_tint">请您输入端口</string>
+    <string name="username_tint">请您输入用户名</string>
+    <string name="pwd_tint">请您输入密码</string>
+    <string name="no_account_login">匿名登录</string>
+    <string name="account_login">登录</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="todo">TODO</string>
+    <string name="title_activity_live">LiveActivity</string>
+
 </resources>

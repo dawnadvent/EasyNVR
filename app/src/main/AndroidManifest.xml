@@ -31,6 +31,11 @@
             android:name=".Activity.BaseActivity"
             android:label="@string/title_activity_base"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.InfoActivity" />
+        <activity
+            android:name=".Activity.LiveActivity"
+            android:label="@string/title_activity_live"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

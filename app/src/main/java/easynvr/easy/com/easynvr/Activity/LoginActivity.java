@@ -1,5 +1,6 @@
 package easynvr.easy.com.easynvr.Activity;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
 import com.trello.rxlifecycle2.android.ActivityEvent;
@@ -16,7 +17,8 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        
+        DataBindingUtil.setContentView(this, R.layout.activity_login);
 
     }
 

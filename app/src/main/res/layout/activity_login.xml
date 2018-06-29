@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <variable
+            name="account"
+            type="easynvr.easy.com.easynvr.Model.Account"/>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,31 +30,136 @@
             android:background="@mipmap/logo"
             android:layout_marginTop="80dp"
             android:layout_centerHorizontal="true"
-            />
+            android:contentDescription="@string/todo" />
 
         <EditText
             android:id="@+id/ip_et"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_below="@+id/logo_id"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="40dp"
-            android:hint="请输入您的IP"
-            android:textColorHint="@color/colorAccent"
-            android:paddingLeft="50dp"
-            android:background="#999999"/>
+            android:hint="@string/ip_tint"
+            android:text="@{account.ip}"
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/white"
+            android:paddingStart="50dp"
+            android:background="@drawable/shape_corner"
+            android:inputType="textUri" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@mipmap/ip"
             android:layout_alignTop="@+id/ip_et"
-            android:layout_alignLeft="@+id/ip_et"
+            android:layout_alignStart="@+id/ip_et"
             android:layout_alignBottom="@+id/ip_et"
-            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:contentDescription="TODO" />
 
-            />
+        <EditText
+            android:id="@+id/port_et"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/ip_et"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:hint="@string/port_tint"
+            android:text="@{account.port}"
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/white"
+            android:paddingStart="50dp"
+            android:background="@drawable/shape_corner"
+            android:inputType="textUri" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/dk"
+            android:layout_alignTop="@+id/port_et"
+            android:layout_alignStart="@+id/port_et"
+            android:layout_alignBottom="@+id/port_et"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:contentDescription="TODO" />
+
+        <EditText
+            android:id="@+id/username_et"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/port_et"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:hint="@string/username_tint"
+            android:text="@{account.userName}"
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/white"
+            android:paddingStart="50dp"
+            android:background="@drawable/shape_corner"
+            android:inputType="textUri" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/user"
+            android:layout_alignTop="@+id/username_et"
+            android:layout_alignStart="@+id/username_et"
+            android:layout_alignBottom="@+id/username_et"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:contentDescription="TODO" />
+
+        <EditText
+            android:id="@+id/pwd_et"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/username_et"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:hint="@string/pwd_tint"
+            android:text="@{account.pwd}"
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/white"
+            android:paddingStart="50dp"
+            android:background="@drawable/shape_corner"
+            android:inputType="textUri" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/password"
+            android:layout_alignTop="@+id/pwd_et"
+            android:layout_alignStart="@+id/pwd_et"
+            android:layout_alignBottom="@+id/pwd_et"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:contentDescription="TODO" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignLeft="@+id/pwd_et"
+            android:layout_below="@+id/pwd_et"
+            android:layout_marginTop="20dp"
+            android:background="@mipmap/button"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="@string/no_account_login"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignRight="@+id/pwd_et"
+            android:layout_below="@+id/pwd_et"
+            android:layout_marginTop="20dp"
+            android:background="@mipmap/button"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="@string/account_login"
+            android:textColor="@android:color/white"/>
 
     </RelativeLayout>
+    </ScrollView>
 </layout>
