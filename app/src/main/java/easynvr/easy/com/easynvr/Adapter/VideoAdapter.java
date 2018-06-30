@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import easynvr.easy.com.easynvr.BR;
-import easynvr.easy.com.easynvr.Model.VideoModel;
+import easynvr.easy.com.easynvr.Model.Video;
 import easynvr.easy.com.easynvr.R;
 
-public class VideoAdapter extends BaseBindRecyclerViewAdapter<VideoModel> {
-    public VideoAdapter(Context context, List<VideoModel> mList) {
+public class VideoAdapter extends BaseBindRecyclerViewAdapter<Video> {
+    public VideoAdapter(Context context, List<Video> mList) {
         super(context, mList);
     }
 

@@ -19,6 +19,8 @@ public class LiveActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // 2.12. Onvif云台控制
+
     }
 
 }
