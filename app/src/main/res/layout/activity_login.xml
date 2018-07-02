@@ -76,7 +76,7 @@
             android:textColor="@android:color/white"
             android:paddingStart="50dp"
             android:background="@drawable/shape_corner"
-            android:inputType="textUri" />
+            android:inputType="textPhonetic" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -128,7 +128,7 @@
             android:textColor="@android:color/white"
             android:paddingStart="50dp"
             android:background="@drawable/shape_corner"
-            android:inputType="textUri" />
+            android:inputType="textPassword" />
 
         <ImageView
             android:layout_width="wrap_content"

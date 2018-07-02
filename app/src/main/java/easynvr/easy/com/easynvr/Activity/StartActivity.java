@@ -3,9 +3,9 @@ package easynvr.easy.com.easynvr.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import easynvr.easy.com.easynvr.Model.Account;
 import easynvr.easy.com.easynvr.R;
 import easynvr.easy.com.easynvr.Tool.SharedHelper;
 import io.reactivex.Observable;
@@ -23,6 +23,8 @@ public class StartActivity extends BaseActivity {
 
         Observable.interval(1, TimeUnit.SECONDS)
                 .compose(this.<Long>bindToLifecycle())
+//                .compose(this.<BaseEntity<User>>bindToLifecycle())
+//                .compose(compose(this.<BaseEntity<User>> bindUntilEvent(ActivityEvent.DESTROY)))
                 .subscribe(new Observer<Long>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -49,12 +51,9 @@ public class StartActivity extends BaseActivity {
 
     private void next() {
         SharedHelper helper = new SharedHelper(getApplicationContext());
-        Map<String, String> map = helper.readIPPort();
+        Account account = helper.readAccount();
 
-        String ip = map.get("ip");
-        String port = map.get("port");
-
-        if (!ip.equals("") && !port.equals("")) {
+        if (!account.getToken().equals("")) {
             Intent it = new Intent(StartActivity.this, MainActivity.class);
             startActivity(it);
         } else {

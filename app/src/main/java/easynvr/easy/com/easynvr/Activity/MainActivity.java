@@ -17,7 +17,6 @@ public class MainActivity extends BaseActivity {
         GridLayoutManager manager = new GridLayoutManager(this, 2);
         binding.recyclerView.setLayoutManager(manager);
 
-
 //        binding.recyclerView.setAdapter();
     }
 }

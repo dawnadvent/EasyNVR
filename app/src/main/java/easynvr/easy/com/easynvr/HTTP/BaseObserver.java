@@ -5,17 +5,21 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.zyao89.view.zloading.ZLoadingDialog;
+
 import easynvr.easy.com.easynvr.Activity.LoginActivity;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
+public abstract class BaseObserver<E> implements Observer<BaseEntity<E>> {
     private static final String TAG = "BaseObserver";
 
     private Context mContext;
+    private ZLoadingDialog mDialog;
 
-    protected BaseObserver(Context context) {
+    protected BaseObserver(Context context, ZLoadingDialog dialog) {
         this.mContext = context.getApplicationContext();
+        mDialog = dialog;
     }
 
     @Override
@@ -24,18 +28,19 @@ public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
     }
 
     @Override
-    public void onNext(BaseEntity<T> value) {
-        if (value.isSuccess()) {
-            T t = value.getData();
-            onHandleSuccess(t);
+    public void onNext(BaseEntity<E> value) {
+        if (value.getEasyDarwin().getHeader().isSuccess()) {
+            E e = value.getEasyDarwin().getBody();
+            onHandleSuccess(e);
         } else {
-            onHandlerError(value.getMsg(), value.getCode());
+            onHandlerError(value.getEasyDarwin().getHeader().getMsg(), value.getEasyDarwin().getHeader().getCode());
         }
     }
 
     @Override
     public void onError(Throwable e) {
         Log.e(TAG, "onError:" + e.toString());
+        onHandlerError(e.getMessage(), -1);
     }
 
     @Override
@@ -43,12 +48,14 @@ public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
         Log.d(TAG, "onComplete");
     }
 
-    protected abstract void onHandleSuccess(T t);
+    protected abstract void onHandleSuccess(E e);
 
     /**
      * 对通用问题的统一拦截处理
      * */
     protected void onHandlerError(String msg, int code) {
+        mDialog.cancel();
+
         switch (code) {
             case 401:
                 Intent intent = new Intent(mContext, LoginActivity.class);

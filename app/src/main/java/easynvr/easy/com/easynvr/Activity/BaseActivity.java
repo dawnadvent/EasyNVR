@@ -1,5 +1,6 @@
 package easynvr.easy.com.easynvr.Activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +10,8 @@ import android.widget.Toast;
 
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.zyao89.view.zloading.ZLoadingDialog;
+import com.zyao89.view.zloading.Z_TYPE;
 
 import easynvr.easy.com.easynvr.R;
 import easynvr.easy.com.easynvr.Tool.Utils;
@@ -21,6 +24,8 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class BaseActivity extends RxAppCompatActivity {
+
+    public ZLoadingDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,5 +52,26 @@ public class BaseActivity extends RxAppCompatActivity {
                         .compose(lifecycle);
             }
         };
+    }
+
+    public void showHub(String text) {
+        if (dialog == null) {
+            dialog = new ZLoadingDialog(this);
+        }
+
+        dialog.setLoadingBuilder(Z_TYPE.STAR_LOADING)//设置类型
+                .setLoadingColor(Color.GRAY)//颜色
+                .setHintText(text)
+                .setHintTextSize(16) // 设置字体大小 dp
+                .setHintTextColor(Color.GRAY)  // 设置字体颜色
+                .setDurationTime(0.5) // 设置动画时间百分比 - 0.5倍
+                .setDialogBackgroundColor(Color.parseColor("#fff5f5f5")) // 设置背景色，默认白色
+                .show();
+    }
+
+    public void hideHub() {
+        if (dialog != null) {
+            dialog.cancel();
+        }
     }
 }

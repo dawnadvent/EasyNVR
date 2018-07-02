@@ -4,6 +4,7 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 import easynvr.easy.com.easynvr.BR;
+import easynvr.easy.com.easynvr.Tool.MD5Util;
 
 public class Account extends BaseObservable {
 
@@ -12,24 +13,26 @@ public class Account extends BaseObservable {
     private String userName;
     private String pwd;
 
+    private String token;
+
     @Bindable
     public String getIp() {
-        return ip;
+        return ip == null ? "" : ip;
     }
 
     @Bindable
     public String getPort() {
-        return port;
+        return port == null ? "" : port;
     }
 
     @Bindable
     public String getUserName() {
-        return userName;
+        return userName == null ? "" : userName;
     }
 
     @Bindable
     public String getPwd() {
-        return pwd;
+        return pwd == null ? "" : pwd;
     }
 
     public void setIp(String ip) {
@@ -50,5 +53,17 @@ public class Account extends BaseObservable {
     public void setPwd(String pwd) {
         this.pwd = pwd;
         notifyPropertyChanged(BR.pwd);
+    }
+
+    public String getToken() {
+        return token == null ? "" : token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String md5Pwd() {
+        return MD5Util.md5(this.pwd);
     }
 }
