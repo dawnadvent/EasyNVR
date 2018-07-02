@@ -2,16 +2,9 @@ package easynvr.easy.com.easynvr.Activity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
-import com.zyao89.view.zloading.ZLoadingDialog;
-import com.zyao89.view.zloading.Z_TYPE;
-
-import java.util.Dictionary;
 
 import easynvr.easy.com.easynvr.HTTP.BaseEntity;
 import easynvr.easy.com.easynvr.HTTP.BaseObserver;
