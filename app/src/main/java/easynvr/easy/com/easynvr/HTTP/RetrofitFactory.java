@@ -64,10 +64,7 @@ public class RetrofitFactory {
 
     public String getBaseURL() {
         SharedHelper helper = new SharedHelper(NVRApplication.getContext());
-        Account account = helper.readAccount();
-        String url = account.getIp() + ":" + account.getPort();
-
-        return url;
+        return helper.getURL();
     }
 
     private static RetrofitFactory instance;

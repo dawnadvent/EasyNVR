@@ -5,11 +5,17 @@
         <variable
             name="account"
             type="easynvr.easy.com.easynvr.Model.Account"/>
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener"/>
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="#ecf0f6">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/main_toolbar"
@@ -27,12 +33,41 @@
                 android:textSize="20sp"/>
 
         </android.support.v7.widget.Toolbar>
+        
+        <EditText
+            android:id="@+id/search_et"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@+id/main_toolbar"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:hint="请您输入搜索信息"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:background="@drawable/search_shape_corner" />
+
+        <ImageButton
+            android:id="@+id/search_btn"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/search_icon"
+            android:scaleType="center"
+            android:layout_alignRight="@+id/search_et"
+            android:layout_marginRight="2dp"
+            android:background="@null"
+            android:layout_alignTop="@+id/search_et"
+            android:layout_alignBottom="@+id/search_et"
+            android:onClick="@{onClick}"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/main_toolbar">
+            android:layout_below="@+id/search_et">
 
         </android.support.v7.widget.RecyclerView>
 

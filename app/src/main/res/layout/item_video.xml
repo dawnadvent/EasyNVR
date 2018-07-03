@@ -1,21 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="item"
-            type="easynvr.easy.com.easynvr.Model.Video" />
+            type="easynvr.easy.com.easynvr.Model.Video.Channel" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="#EBF0F6">
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{item.name}"/>
+            <ImageView
+                android:id="@+id/snap_iv_id"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:background="#f2f2f2"
+                app:imageUrl="@{item.snapUrl}"
+                android:scaleType="center"/>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/channel_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/snap_iv_id"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="2dp"
+                android:text="@{&quot;[通道&quot; + item.channel + &quot;]&quot;}"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/online_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/channel_tv"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="4dp"
+                android:text="@{(item.online == 1) ? &quot;在线&quot; : &quot;离线&quot;}"
+                android:textSize="12sp"/>
+
+            <ImageView
+                android:id="@+id/online_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/online_tv"
+                android:layout_marginRight="4dp"
+                android:layout_alignTop="@+id/online_tv"
+                android:layout_alignBottom="@+id/online_tv"
+                android:src="@mipmap/online"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/channel_tv"
+                android:layout_toLeftOf="@+id/online_iv"
+                android:layout_toRightOf="@+id/channel_tv"
+                android:layout_marginLeft="5dp"
+                android:text="@{item.name}"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </layout>

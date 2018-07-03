@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import easynvr.easy.com.easynvr.Model.Account;
+import easynvr.easy.com.easynvr.NVRApplication;
 
 public class SharedHelper {
     private Context mContext;
@@ -32,8 +33,6 @@ public class SharedHelper {
     }
 
     public Account readAccount() {
-        Map<String, String> data = new HashMap<>();
-
         SharedPreferences sp = mContext.getSharedPreferences("mysp", Context.MODE_PRIVATE);
 
         Account account = new Account();
@@ -44,5 +43,12 @@ public class SharedHelper {
         account.setToken(sp.getString("token", ""));
 
         return account;
+    }
+
+    public String getURL() {
+        Account account = readAccount();
+        String url = account.getIp() + ":" + account.getPort();
+
+        return url;
     }
 }
