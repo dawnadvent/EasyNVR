@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import easynvr.easy.com.easynvr.BR;
 import easynvr.easy.com.easynvr.NVRApplication;
 import easynvr.easy.com.easynvr.R;
 import easynvr.easy.com.easynvr.Tool.SharedHelper;
@@ -34,7 +35,7 @@ public class Video extends BaseObservable {
         this.channels = channels;
     }
 
-    public class Channel implements IBaseBindingAdapterItem {
+    public class Channel extends BaseObservable implements IBaseBindingAdapterItem {
         @SerializedName("Channel")
         private String channel; // 通道号
 
