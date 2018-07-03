@@ -4,6 +4,9 @@
     <string name="title_activity_start">StartActivity</string>
     <string name="title_activity_base">BaseActivity</string>
 
+    <string name="video_list_name">视频广场</string>
+    <string name="info_name">版本信息</string>
+
     <string name="toast_network_error">网络连接异常，请检查网络</string>
 
     <string name="welcome">欢迎使用EasyNVR</string>

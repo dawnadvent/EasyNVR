@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
@@ -13,16 +12,18 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary">
+            android:layout_height="44dp"
+            android:background="@color/colorTheme">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textColor="@android:color/holo_red_dark"
+                android:text="@string/video_list_name"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:layout_marginLeft="60dp"
                 android:textSize="20sp"/>
 
         </android.support.v7.widget.Toolbar>
@@ -31,7 +32,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar">
+            android:layout_below="@+id/main_toolbar">
 
         </android.support.v7.widget.RecyclerView>
 
