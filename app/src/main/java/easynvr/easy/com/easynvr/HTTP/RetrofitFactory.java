@@ -18,10 +18,15 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitFactory {
-    private static final long TIME_OUT = 30;
+    private static final long TIME_OUT = 15;
+
+    public static String getBaseURL() {
+        SharedHelper helper = new SharedHelper(NVRApplication.getContext());
+        return helper.getURL();
+    }
 
     // Retrofit是基于OkHttpClient的，可以创建一个OkHttpClient进行一些配置
-    private OkHttpClient httpClient = new OkHttpClient.Builder()
+    private static OkHttpClient httpClient = new OkHttpClient.Builder()
             .addInterceptor(new Interceptor() {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
@@ -50,7 +55,7 @@ public class RetrofitFactory {
             .readTimeout(TIME_OUT, TimeUnit.SECONDS)
             .build();
 
-    private RetrofitService retrofitService = new Retrofit.Builder()
+    private static RetrofitService retrofitService = new Retrofit.Builder()
             .baseUrl(getBaseURL())
             .addConverterFactory(GsonConverterFactory.create())// 添加Gson转换器
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())// 添加Retrofit到RxJava的转换器
@@ -58,21 +63,7 @@ public class RetrofitFactory {
             .build()
             .create(RetrofitService.class);
 
-    public RetrofitService getRetrofitService() {
+    public static RetrofitService getRetrofitService() {
         return retrofitService;
-    }
-
-    public String getBaseURL() {
-        SharedHelper helper = new SharedHelper(NVRApplication.getContext());
-        return helper.getURL();
-    }
-
-    private static RetrofitFactory instance;
-    public static RetrofitFactory getInstance() {
-        if (instance == null) {
-            instance = new RetrofitFactory();
-        }
-
-        return instance;
     }
 }

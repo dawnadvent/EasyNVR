@@ -110,9 +110,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         // 加载框
         showHub("登录中");
 
-        RetrofitService retrofitService = RetrofitFactory.getInstance().getRetrofitService();
-        Observable<BaseEntity<User>> observable = retrofitService.login(account.getUserName(), account.md5Pwd());
-
+        Observable<BaseEntity<User>> observable = RetrofitFactory.getRetrofitService().login(account.getUserName(), account.md5Pwd());
         observable
                 .compose(compose(this.<BaseEntity<User>> bindToLifecycle()))
                 .subscribe(new BaseObserver<User>(this, dialog) {

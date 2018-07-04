@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +13,14 @@ import java.util.List;
 
 import easynvr.easy.com.easynvr.Activity.LiveActivity;
 import easynvr.easy.com.easynvr.BR;
-import easynvr.easy.com.easynvr.Model.Video;
+import easynvr.easy.com.easynvr.Model.Channel;
 import easynvr.easy.com.easynvr.R;
 import easynvr.easy.com.easynvr.databinding.ItemVideoBinding;
 
-public class VideoAdapter extends BaseBindRecyclerViewAdapter<Video.Channel> {
+public class VideoAdapter extends BaseBindRecyclerViewAdapter<Channel> {
     private Context mContext;
 
-    public VideoAdapter(Context context, List<Video.Channel> mList) {
+    public VideoAdapter(Context context, List<Channel> mList) {
         super(context, mList);
         mContext = context;
     }
@@ -36,7 +36,7 @@ public class VideoAdapter extends BaseBindRecyclerViewAdapter<Video.Channel> {
     public void onBindMyViewHolder(RecyclerView.ViewHolder holder, int pos) {
         ItemVideoBinding binding = DataBindingUtil.getBinding(holder.itemView);
 
-        Video.Channel channel = mList.get(pos);
+        final Channel channel = mList.get(pos);
         binding.setVariable(BR.item, channel);
 
         if (channel.getOnline() == 1) {
@@ -55,7 +55,11 @@ public class VideoAdapter extends BaseBindRecyclerViewAdapter<Video.Channel> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, LiveActivity.class);
-                // TODO
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("channel", channel);//序列化
+                intent.putExtras(bundle);//发送数据
+
                 mContext.startActivity(intent);
             }
         });

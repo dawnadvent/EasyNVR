@@ -110,17 +110,20 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
     }
 
     private void getchannels() {
-        Observable<BaseEntity<Video>> observable = RetrofitFactory.getInstance().getRetrofitService().getchannels(keyword, start, limit);
-
+        Observable<BaseEntity<Video>> observable = RetrofitFactory.getRetrofitService().getChannels(keyword, start, limit);
         observable.compose(compose(this.<BaseEntity<Video>> bindToLifecycle()))
                 .subscribe(new BaseObserver<Video>(this, dialog) {
                     @Override
                     protected void onHandleSuccess(Video video) {
-                        if (start == 0) {
+                        if (adapter == null) {
                             adapter = new VideoAdapter(MainActivity.this, video.getChannels());
                             binding.recyclerView.setAdapter(adapter);
                         } else {
-                            adapter.addList(video.getChannels());
+                            if (start == 0) {
+                                adapter.setmList(video.getChannels());
+                            } else {
+                                adapter.addList(video.getChannels());
+                            }
                         }
 
                         hideHub();

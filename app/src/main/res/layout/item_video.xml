@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="easynvr.easy.com.easynvr.Model.Video.Channel" />
+            type="easynvr.easy.com.easynvr.Model.Channel" />
     </data>
 
     <RelativeLayout
