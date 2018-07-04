@@ -1,14 +1,17 @@
 package easynvr.easy.com.easynvr.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
 
+import easynvr.easy.com.easynvr.Activity.LiveActivity;
 import easynvr.easy.com.easynvr.BR;
 import easynvr.easy.com.easynvr.Model.Video;
 import easynvr.easy.com.easynvr.R;
@@ -47,6 +50,15 @@ public class VideoAdapter extends BaseBindRecyclerViewAdapter<Video.Channel> {
             binding.channelTv.setTextColor(mContext.getResources().getColor(R.color.colorGray));
             binding.nameTv.setTextColor(mContext.getResources().getColor(R.color.colorGray));
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, LiveActivity.class);
+                // TODO
+                mContext.startActivity(intent);
+            }
+        });
 
         binding.executePendingBindings();// 数据改变时立即刷新数据
     }

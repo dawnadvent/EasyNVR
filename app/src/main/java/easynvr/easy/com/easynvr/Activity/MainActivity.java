@@ -12,6 +12,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import easynvr.easy.com.easynvr.Adapter.VideoAdapter;
 import easynvr.easy.com.easynvr.HTTP.BaseEntity;
 import easynvr.easy.com.easynvr.HTTP.BaseObserver;
@@ -24,6 +29,7 @@ import io.reactivex.Observable;
 public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener, View.OnClickListener {
 
     private ActivityMainBinding binding;
+    private VideoAdapter adapter;
 
     private String keyword;
     private int start;
@@ -38,7 +44,6 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
         setSupportActionBar(binding.mainToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         binding.mainToolbar.setOnMenuItemClickListener(this);
-        binding.mainToolbar.setTitle("视频广场");
 
         GridLayoutManager manager = new GridLayoutManager(this, 2);
         binding.recyclerView.setLayoutManager(manager);
@@ -49,6 +54,20 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
 
         showHub("查询中");
         getchannels();
+
+        binding.recyclerViewRefresh.setRefreshListener(new BaseRefreshListener() {
+            @Override
+            public void refresh() {
+                start = 0;
+                getchannels();
+            }
+
+            @Override
+            public void loadMore() {
+                start++;
+                getchannels();
+            }
+        });
     }
 
     @Override
@@ -57,12 +76,16 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
 
-        if (!binding.searchEt.getText().equals("")) {
-
-            // TODO
-
-            Toast.makeText(this , binding.searchEt.getText(), Toast.LENGTH_SHORT).show();
+        String text = binding.searchEt.getText().toString();
+        if (text.equals("") && keyword.equals("")) {
+            return;
         }
+
+        showHub("搜索中");
+
+        keyword = text;
+        start = 0;
+        getchannels();
     }
 
     @Override
@@ -93,11 +116,16 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                 .subscribe(new BaseObserver<Video>(this, dialog) {
                     @Override
                     protected void onHandleSuccess(Video video) {
-
-                        VideoAdapter adapter = new VideoAdapter(MainActivity.this, video.getChannels());
-                        binding.recyclerView.setAdapter(adapter);
+                        if (start == 0) {
+                            adapter = new VideoAdapter(MainActivity.this, video.getChannels());
+                            binding.recyclerView.setAdapter(adapter);
+                        } else {
+                            adapter.addList(video.getChannels());
+                        }
 
                         hideHub();
+                        binding.recyclerViewRefresh.finishRefresh();
+                        binding.recyclerViewRefresh.finishLoadMore();
                     }
                 });
     }

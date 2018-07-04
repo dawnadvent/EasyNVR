@@ -33,4 +33,10 @@ public abstract class BaseBindRecyclerViewAdapter<T> extends RecyclerView.Adapte
 
     public abstract RecyclerView.ViewHolder onCreateMyViewHolder(ViewGroup parent, int viewType);
     public abstract void onBindMyViewHolder(RecyclerView.ViewHolder holder, int pos);
+
+    public void addList(List<T> list) {
+        mList.addAll(list);
+
+        notifyDataSetChanged();
+    }
 }

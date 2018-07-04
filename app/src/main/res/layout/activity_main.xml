@@ -3,9 +3,6 @@
 
     <data>
         <variable
-            name="account"
-            type="easynvr.easy.com.easynvr.Model.Account"/>
-        <variable
             name="onClick"
             type="android.view.View.OnClickListener"/>
     </data>
@@ -63,13 +60,19 @@
             android:layout_alignBottom="@+id/search_et"
             android:onClick="@{onClick}"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <com.jwenfeng.library.pulltorefresh.PullToRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/recyclerView_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/search_et">
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </android.support.v7.widget.RecyclerView>
+        </com.jwenfeng.library.pulltorefresh.PullToRefreshLayout>
 
     </RelativeLayout>
 
