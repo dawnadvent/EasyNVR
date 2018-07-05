@@ -5,24 +5,24 @@ import com.google.gson.annotations.SerializedName;
 public class Live {
 
     @SerializedName("ChannelName")
-    private int channelName;
+    private String channelName;
 
     @SerializedName("URL")
-    private int url;
+    private String url;
 
-    public int getChannelName() {
+    public String getChannelName() {
         return channelName;
     }
 
-    public void setChannelName(int channelName) {
-        this.channelName = channelName;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public int getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    public void setUrl(int url) {
-        this.url = url;
+    public void setChannelName(String channelName) {
+        this.channelName = channelName;
     }
 }

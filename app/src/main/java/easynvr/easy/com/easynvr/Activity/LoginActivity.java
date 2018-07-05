@@ -113,7 +113,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         Observable<BaseEntity<User>> observable = RetrofitFactory.getRetrofitService().login(account.getUserName(), account.md5Pwd());
         observable
                 .compose(compose(this.<BaseEntity<User>> bindToLifecycle()))
-                .subscribe(new BaseObserver<User>(this, dialog) {
+                .subscribe(new BaseObserver<User>(this, dialog, null) {
                     @Override
                     protected void onHandleSuccess(User user) {
                         account.setToken(user.getToken());

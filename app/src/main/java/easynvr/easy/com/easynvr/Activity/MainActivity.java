@@ -112,7 +112,7 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
     private void getchannels() {
         Observable<BaseEntity<Video>> observable = RetrofitFactory.getRetrofitService().getChannels(keyword, start, limit);
         observable.compose(compose(this.<BaseEntity<Video>> bindToLifecycle()))
-                .subscribe(new BaseObserver<Video>(this, dialog) {
+                .subscribe(new BaseObserver<Video>(this, dialog, binding.recyclerViewRefresh) {
                     @Override
                     protected void onHandleSuccess(Video video) {
                         if (adapter == null) {

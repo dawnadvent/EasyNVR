@@ -1,5 +1,6 @@
 package easynvr.easy.com.easynvr.Activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import easynvr.easy.com.easynvr.HTTP.BaseEntity;
 import easynvr.easy.com.easynvr.HTTP.BaseObserver;
 import easynvr.easy.com.easynvr.HTTP.RetrofitFactory;
+import easynvr.easy.com.easynvr.Model.Channel;
 import easynvr.easy.com.easynvr.Model.Live;
 import easynvr.easy.com.easynvr.R;
 import easynvr.easy.com.easynvr.databinding.ActivityLiveBinding;
@@ -28,9 +30,13 @@ public class LiveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
         // 左边的小箭头（注意需要在setSupportActionBar(toolbar)之后才有效果）
         binding.liveToolbar.setNavigationIcon(R.mipmap.back);
 
+        Intent intent = getIntent();
+        Channel channel = (Channel) intent.getSerializableExtra("channel");
+
+        binding.toolbarTv.setText(channel.getName());
 
         showHub("查询中");
-        getChannelStream();
+        getChannelStream(channel.getChannel());
 
         // 2.12. Onvif云台控制
     }
@@ -56,11 +62,10 @@ public class LiveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
         return super.onOptionsItemSelected(item);
     }
 
-    private void getChannelStream() {
-
-        Observable<BaseEntity<Live>> observable = RetrofitFactory.getRetrofitService().getChannelStream("", "RTMP/HLS");
+    private void getChannelStream(String channel) {
+        Observable<BaseEntity<Live>> observable = RetrofitFactory.getRetrofitService().getChannelStream(channel, "RTMP/HLS");
         observable.compose(compose(this.<BaseEntity<Live>> bindToLifecycle()))
-                .subscribe(new BaseObserver<Live>(this, dialog) {
+                .subscribe(new BaseObserver<Live>(this, dialog, null) {
                     @Override
                     protected void onHandleSuccess(Live live) {
                         hideHub();

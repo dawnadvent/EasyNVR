@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
 import com.zyao89.view.zloading.ZLoadingDialog;
 
 import easynvr.easy.com.easynvr.Activity.LoginActivity;
@@ -16,10 +17,12 @@ public abstract class BaseObserver<E> implements Observer<BaseEntity<E>> {
 
     private Context mContext;
     private ZLoadingDialog mDialog;
+    private PullToRefreshLayout mRefreshLayout;
 
-    protected BaseObserver(Context context, ZLoadingDialog dialog) {
+    protected BaseObserver(Context context, ZLoadingDialog dialog, PullToRefreshLayout refreshLayout) {
         this.mContext = context.getApplicationContext();
         mDialog = dialog;
+        mRefreshLayout = refreshLayout;
     }
 
     @Override
@@ -55,6 +58,11 @@ public abstract class BaseObserver<E> implements Observer<BaseEntity<E>> {
      * */
     protected void onHandlerError(String msg, int code) {
         mDialog.cancel();
+
+        if (mRefreshLayout != null) {
+            mRefreshLayout.finishLoadMore();
+            mRefreshLayout.finishRefresh();
+        }
 
         switch (code) {
             case 401:

@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#EBF0F6">
+        android:background="@drawable/recycler_item_selector">
         
         <RelativeLayout
             android:layout_width="match_parent"
