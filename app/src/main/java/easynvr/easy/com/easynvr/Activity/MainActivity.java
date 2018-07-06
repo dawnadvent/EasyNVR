@@ -10,12 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
 import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import easynvr.easy.com.easynvr.Adapter.VideoAdapter;
 import easynvr.easy.com.easynvr.HTTP.BaseEntity;
@@ -68,6 +64,8 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                 getchannels();
             }
         });
+
+        binding.activityEmptyView.setVisibility(View.GONE);
     }
 
     @Override
@@ -115,12 +113,22 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                 .subscribe(new BaseObserver<Video>(this, dialog, binding.recyclerViewRefresh) {
                     @Override
                     protected void onHandleSuccess(Video video) {
+                        binding.activityEmptyView.setVisibility(View.GONE);
+
                         if (adapter == null) {
                             adapter = new VideoAdapter(MainActivity.this, video.getChannels());
                             binding.recyclerView.setAdapter(adapter);
+
+                            if (video.getChannels().size() == 0) {
+                                binding.activityEmptyView.setVisibility(View.VISIBLE);
+                            }
                         } else {
                             if (start == 0) {
                                 adapter.setmList(video.getChannels());
+
+                                if (video.getChannels().size() == 0) {
+                                    binding.activityEmptyView.setVisibility(View.VISIBLE);
+                                }
                             } else {
                                 adapter.addList(video.getChannels());
                             }

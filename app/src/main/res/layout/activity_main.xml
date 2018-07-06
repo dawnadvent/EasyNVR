@@ -26,7 +26,7 @@
                 android:text="@string/video_list_name"
                 android:textColor="@android:color/white"
                 android:gravity="center"
-                android:layout_marginLeft="60dp"
+                android:layout_marginStart="60dp"
                 android:textSize="20sp"/>
 
         </android.support.v7.widget.Toolbar>
@@ -42,10 +42,11 @@
             android:layout_marginBottom="10dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:hint="请您输入搜索信息"
+            android:hint="@string/search_tint"
             android:textSize="16sp"
             android:textColor="#333333"
-            android:background="@drawable/search_shape_corner" />
+            android:background="@drawable/search_shape_corner"
+            android:inputType="" />
 
         <ImageButton
             android:id="@+id/search_btn"
@@ -53,12 +54,13 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/search_icon"
             android:scaleType="center"
-            android:layout_alignRight="@+id/search_et"
-            android:layout_marginRight="2dp"
+            android:layout_alignEnd="@+id/search_et"
+            android:layout_marginEnd="2dp"
             android:background="@null"
             android:layout_alignTop="@+id/search_et"
             android:layout_alignBottom="@+id/search_et"
-            android:onClick="@{onClick}"/>
+            android:onClick="@{onClick}"
+            android:contentDescription="@string/todo" />
 
         <com.jwenfeng.library.pulltorefresh.PullToRefreshLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -73,6 +75,27 @@
                 android:layout_height="match_parent">
             </android.support.v7.widget.RecyclerView>
         </com.jwenfeng.library.pulltorefresh.PullToRefreshLayout>
+
+        <RelativeLayout
+            android:id="@+id/activity_empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/search_et"
+            android:background="@color/colorWhite">
+            <ImageView
+                android:id="@+id/empty_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_jzsb"
+                android:layout_centerInParent="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="暂无数据"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/empty_iv"
+                android:layout_marginTop="10dp"/>
+        </RelativeLayout>
 
     </RelativeLayout>
 

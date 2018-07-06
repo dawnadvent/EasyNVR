@@ -3,8 +3,8 @@
 
     <data>
         <variable
-            name="account"
-            type="easynvr.easy.com.easynvr.Model.Account"/>
+            name="service"
+            type="easynvr.easy.com.easynvr.Model.ServiceInfo"/>
     </data>
 
     <RelativeLayout
@@ -39,6 +39,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/copyright_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Copyright © 2012-2018 www.easynrv.com All rights reversed."
@@ -125,7 +126,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Android"
+                        android:text="@{service.hardware}"
                         android:textColor="#4d4d4d"
                         android:layout_marginLeft="22dp"
                         android:textSize="14sp"/>
@@ -148,7 +149,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="V1"
+                        android:text="@{service.interfaceVersion}"
                         android:textColor="#4d4d4d"
                         android:layout_marginLeft="22dp"
                         android:textSize="14sp"/>
@@ -171,7 +172,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="12Days 0Hours 27Mins 13Secs"
+                        android:text="@{service.runningTime}"
                         android:textColor="#4d4d4d"
                         android:layout_marginLeft="22dp"
                         android:textSize="14sp"/>
@@ -194,7 +195,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="EasyNRVR/2.9(Build/18.0.4)"
+                        android:text="@{service.server}"
                         android:textColor="#4d4d4d"
                         android:layout_marginLeft="22dp"
                         android:textSize="14sp"/>

@@ -36,6 +36,8 @@
             android:layout_centerHorizontal="true"
             android:contentDescription="@string/todo" />
 
+        <!-- android.support.design.widget.TextInputLayout -->
+
         <EditText
             android:id="@+id/ip_et"
             android:layout_width="match_parent"

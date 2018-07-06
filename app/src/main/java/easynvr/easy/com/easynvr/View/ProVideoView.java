@@ -169,7 +169,6 @@ public class ProVideoView extends IjkVideoView implements VideoControllerView.Fu
         return false;
     }
 
-
     public void startRecord(String path, int seconds) {
         if (mMediaPlayer == null){
             return;
@@ -177,7 +176,6 @@ public class ProVideoView extends IjkVideoView implements VideoControllerView.Fu
         super.startRecord(path,seconds);
         mRecordPath = path;
     }
-
 
     public void stopRecord() {
         if (mMediaPlayer == null){

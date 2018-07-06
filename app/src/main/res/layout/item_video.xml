@@ -8,6 +8,10 @@
             type="easynvr.easy.com.easynvr.Model.Channel" />
     </data>
 
+    <!-- CardView -->
+    <!-- CardView -->
+    <!-- CardView -->
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

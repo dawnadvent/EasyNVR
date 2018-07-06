@@ -22,5 +22,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="todo">TODO</string>
     <string name="title_activity_live">LiveActivity</string>
+    <string name="search_tint">请您输入搜索信息</string>
 
 </resources>

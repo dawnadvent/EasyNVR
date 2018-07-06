@@ -1,6 +1,7 @@
 package easynvr.easy.com.easynvr.HTTP;
 
 import easynvr.easy.com.easynvr.Model.Live;
+import easynvr.easy.com.easynvr.Model.ServiceInfo;
 import easynvr.easy.com.easynvr.Model.User;
 import easynvr.easy.com.easynvr.Model.Video;
 import io.reactivex.Observable;
@@ -17,5 +18,8 @@ public interface RetrofitService {
 
     @GET("/api/v1/getchannelstream")
     Observable<BaseEntity<Live>> getChannelStream(@Query("Channel") String channel, @Query("Protocol") String potocol);
+
+    @GET("/api/v1/getserverinfo")
+    Observable<BaseEntity<ServiceInfo>> getServerInfo();
 
 }
