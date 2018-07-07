@@ -297,16 +297,19 @@ public class LiveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
         if (isLandscape()) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-            mBinding.liveToolbar.setVisibility(View.VISIBLE);
+
+//            mBinding.liveToolbar.setVisibility(View.VISIBLE);
+
 
         } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-            mBinding.liveToolbar.setVisibility(View.GONE);
 
-            int flag = WindowManager.LayoutParams.FLAG_FULLSCREEN;
-            //设置当前窗体为全屏显示
-            getWindow().setFlags(flag, flag);
+//            mBinding.liveToolbar.setVisibility(View.GONE);
+
+//            int flag = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+//            //设置当前窗体为全屏显示
+//            getWindow().setFlags(flag, flag);
         }
     }
 
@@ -367,30 +370,31 @@ public class LiveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        LinearLayout container = mBinding.playerContainer;
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            setNavVisibility(false);
-            // 横屏情况 播放窗口横着排开
-            container.setOrientation(LinearLayout.HORIZONTAL);
-        } else {
-            // 竖屏,取消全屏状态
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            setNavVisibility(true);
-            // 竖屏情况 播放窗口竖着排开
-            container.setOrientation(LinearLayout.VERTICAL);
-        }
+
+//        LinearLayout container = mBinding.playerContainer;
+//        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//            setNavVisibility(false);
+//            // 横屏情况 播放窗口横着排开
+//            container.setOrientation(LinearLayout.HORIZONTAL);
+//        } else {
+//            // 竖屏,取消全屏状态
+//            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//            setNavVisibility(true);
+//            // 竖屏情况 播放窗口竖着排开
+//            container.setOrientation(LinearLayout.VERTICAL);
+//        }
     }
 
-    public void setNavVisibility(boolean visible) {
-        if (!ViewConfigurationCompat.hasPermanentMenuKey(ViewConfiguration.get(this))) {
-            int newVis = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-            if (!visible) {
-                newVis |= View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE;
-            }
-            // If we are now visible, schedule a timer for us to go invisible.
-            // Set the new desired visibility.
-            getWindow().getDecorView().setSystemUiVisibility(newVis);
-        }
-    }
+//    public void setNavVisibility(boolean visible) {
+//        if (!ViewConfigurationCompat.hasPermanentMenuKey(ViewConfiguration.get(this))) {
+//            int newVis = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+//            if (!visible) {
+//                newVis |= View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE;
+//            }
+//            // If we are now visible, schedule a timer for us to go invisible.
+//            // Set the new desired visibility.
+//            getWindow().getDecorView().setSystemUiVisibility(newVis);
+//        }
+//    }
 }

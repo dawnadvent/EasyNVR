@@ -44,6 +44,7 @@
         <activity
             android:name=".Activity.LiveActivity"
             android:label="@string/title_activity_live"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme"></activity>
     </application>
 

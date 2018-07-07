@@ -34,8 +34,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         * 账号密码：admin    Easydarwin123
         * */
         if (account.getIp().equals("")) {
-//            account.setIp("http://demo.easynvr.com");
-            account.setIp("http://192.168.1.145");
+            account.setIp("http://demo.easynvr.com");
+//            account.setIp("http://192.168.1.145");
         }
         if (account.getPort().equals("")) {
             account.setPort("10800");
@@ -44,8 +44,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             account.setUserName("admin");
         }
         if (account.getPwd().equals("")) {
-//            account.setPwd("Easydarwin123");
-            account.setPwd("admin");
+            account.setPwd("Easydarwin123");
+//            account.setPwd("admin");
         }
 
         helper.saveAccount(account);
