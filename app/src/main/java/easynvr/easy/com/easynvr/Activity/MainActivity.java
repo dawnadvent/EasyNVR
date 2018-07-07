@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
 
@@ -60,7 +61,6 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
 
             @Override
             public void loadMore() {
-                start++;
                 getchannels();
             }
         });
@@ -122,6 +122,8 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                             if (video.getChannels().size() == 0) {
                                 binding.activityEmptyView.setVisibility(View.VISIBLE);
                             }
+
+                            start = video.getChannels().size();
                         } else {
                             if (start == 0) {
                                 adapter.setmList(video.getChannels());
@@ -129,8 +131,12 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                                 if (video.getChannels().size() == 0) {
                                     binding.activityEmptyView.setVisibility(View.VISIBLE);
                                 }
+
+                                start = video.getChannels().size();
                             } else {
                                 adapter.addList(video.getChannels());
+
+                                start += video.getChannels().size();
                             }
                         }
 

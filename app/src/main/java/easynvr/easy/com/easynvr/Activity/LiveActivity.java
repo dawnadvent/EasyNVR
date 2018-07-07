@@ -25,6 +25,9 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -84,6 +87,10 @@ public class LiveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
         mediaController = new VideoControllerView2(this);
         mediaController.setMediaPlayer(mBinding.videoView);
         mBinding.videoView.setMediaController(mediaController);
+
+        Glide.with(this).load(R.mipmap.loading)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(mBinding.gitIv);
 
         Runnable mSpeedCalcTask = new Runnable() {
             private long mReceivedBytes;

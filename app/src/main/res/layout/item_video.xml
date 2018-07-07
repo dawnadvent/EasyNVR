@@ -76,6 +76,7 @@
                 android:layout_toLeftOf="@+id/online_iv"
                 android:layout_toRightOf="@+id/channel_tv"
                 android:layout_marginLeft="5dp"
+                android:lines="1"
                 android:text="@{item.name}"
                 android:textSize="12sp"/>
         </RelativeLayout>
