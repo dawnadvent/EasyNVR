@@ -14,12 +14,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import easynvr.easy.com.easynvr.Activity.LiveActivity;
+import easynvr.easy.com.easynvr.HTTP.BaseEntity;
+import easynvr.easy.com.easynvr.HTTP.BaseObserver;
+import easynvr.easy.com.easynvr.HTTP.RetrofitFactory;
+import easynvr.easy.com.easynvr.Model.Live;
+import io.reactivex.Observable;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 import tv.danmaku.ijk.media.widget.media.IjkVideoView;
 
-public class ProVideoView extends IjkVideoView implements VideoControllerView.FullscreenableMediaPlayerControl {
+public class ProVideoView extends IjkVideoView implements VideoControllerView2.FullscreenableMediaPlayerControl {
     private String mRecordPath;
-    private int mRecordFileIndex = 0;
 
     public ProVideoView(Context context) {
         super(context);
@@ -43,6 +47,7 @@ public class ProVideoView extends IjkVideoView implements VideoControllerView.Fu
             LiveActivity pro = (LiveActivity) getContext();
             return pro.isLandscape();
         }
+
         return false;
     }
 
@@ -57,16 +62,22 @@ public class ProVideoView extends IjkVideoView implements VideoControllerView.Fu
     @Override
     public boolean recordEnable() {
         Uri uri = mUri;
-        if (uri == null) return false;
-        if (uri.getScheme() == null) return false;
+        if (uri == null)
+            return false;
+        if (uri.getScheme() == null)
+            return false;
+
         return !uri.getScheme().equals("file");
     }
 
     @Override
     public boolean speedCtrlEnable() {
         Uri uri = mUri;
-        if (uri == null) return false;
-        if (uri.getScheme() == null) return true;
+        if (uri == null)
+            return false;
+        if (uri.getScheme() == null)
+            return true;
+
         return uri.getScheme().equals("file");
     }
 
@@ -75,6 +86,7 @@ public class ProVideoView extends IjkVideoView implements VideoControllerView.Fu
         if (mMediaPlayer == null){
             return false;
         }
+
         return !TextUtils.isEmpty(mRecordPath);
     }
 
@@ -97,15 +109,10 @@ public class ProVideoView extends IjkVideoView implements VideoControllerView.Fu
             }
         }
 
-        if (!isRecording()){
+        if (!isRecording()) {
             Uri uri = mUri;
-            if (uri == null) return;
-
-//            mRecordPath = uri.getLastPathSegment();
-//            if (mRecordPath.endsWith(".mp4")){
-//                mRecordPath = mRecordPath.substring(0, mRecordPath.lastIndexOf(".mp4"));
-//            }
-//            mRecordPath += "_" + mRecordFileIndex++ + ".mp4";
+            if (uri == null)
+                return;
 
             mRecordPath = "record_" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".mp4";
             File directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES);
@@ -116,20 +123,22 @@ public class ProVideoView extends IjkVideoView implements VideoControllerView.Fu
                 ex.printStackTrace();
                 mRecordPath = null;
             }
-        }else{
+        } else {
             stopRecord();
         }
     }
 
     @Override
     public float getSpeed() {
-        if (mMediaPlayer == null ){
+        if (mMediaPlayer == null) {
             return 1.0f;
         }
+
         if (mMediaPlayer instanceof IjkMediaPlayer){
             IjkMediaPlayer player = (IjkMediaPlayer) mMediaPlayer;
             return player.getSpeed();
         }
+
         return 1.0f;
     }
 
@@ -138,6 +147,7 @@ public class ProVideoView extends IjkVideoView implements VideoControllerView.Fu
         if (mMediaPlayer == null ){
             return ;
         }
+
         if (mMediaPlayer instanceof IjkMediaPlayer){
             IjkMediaPlayer player = (IjkMediaPlayer) mMediaPlayer;
             player.setSpeed(speed);
@@ -169,18 +179,38 @@ public class ProVideoView extends IjkVideoView implements VideoControllerView.Fu
         return false;
     }
 
+    @Override
+    public void openAudio() {
+        setVolume(1,1);
+    }
+
+    @Override
+    public void closeAudio() {
+        setVolume(0, 0);
+    }
+
+    @Override
+    public void ptzcontrol(String command) {
+        if (getContext() instanceof LiveActivity){
+            LiveActivity pro = (LiveActivity) getContext();
+            pro.ptzcontrol(command);
+        }
+    }
+
     public void startRecord(String path, int seconds) {
         if (mMediaPlayer == null){
             return;
         }
-        super.startRecord(path,seconds);
+
+        super.startRecord(path, seconds);
         mRecordPath = path;
     }
 
     public void stopRecord() {
-        if (mMediaPlayer == null){
+        if (mMediaPlayer == null) {
             return;
         }
+
         super.stopRecord();
         mRecordPath = null;
     }

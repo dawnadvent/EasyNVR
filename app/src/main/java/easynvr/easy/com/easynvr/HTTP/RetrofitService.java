@@ -22,4 +22,11 @@ public interface RetrofitService {
     @GET("/api/v1/getserverinfo")
     Observable<BaseEntity<ServiceInfo>> getServerInfo();
 
+    @GET("/api/v1/ptzcontrol")
+    Observable<BaseEntity<Object>> ptzcontrol(@Query("channel") String channel,        // 通道ID
+                                              @Query("command") String command,        // 动作命令:stop停止、up向上移动、down向下移动、left向左移动、right向右移动、zoomin、zoomout、focusin、focusout、aperturein、apertureout
+                                              @Query("actiontype") String actiontype,  // 动作类型:continuous或者single
+                                              @Query("speed") String speed,            // 动作速度:5
+                                              @Query("protocol") String protocol);     // 摄像机接入的协议:onvif
+
 }

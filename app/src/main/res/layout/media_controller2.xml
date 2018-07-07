@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/voice_btn"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/voice"
+            android:scaleType="center"
+            android:background="@null"
+            android:contentDescription="@string/todo" />
+        <ImageButton
+            android:id="@+id/full_btn"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/full"
+            android:scaleType="center"
+            android:background="@null"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/todo" />
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#f5f5f5"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <ImageButton
+            android:id="@+id/far_btn"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/far"
+            android:scaleType="center"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/todo" />
+
+        <ImageButton
+            android:id="@+id/nearly_btn"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/nearly"
+            android:scaleType="center"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/todo" />
+
+        <ImageButton
+            android:id="@+id/up_btn"
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/up"
+            android:scaleType="center"
+            android:background="@null"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/todo" />
+
+        <ImageButton
+            android:id="@+id/down_btn"
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/down"
+            android:scaleType="center"
+            android:background="@null"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:contentDescription="@string/todo" />
+
+        <ImageButton
+            android:id="@+id/left_btn"
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/left"
+            android:scaleType="center"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/up_btn"
+            android:contentDescription="@string/todo" />
+
+        <ImageButton
+            android:id="@+id/right_btn"
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/right"
+            android:scaleType="center"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/up_btn"
+            android:contentDescription="@string/todo" />
+    </RelativeLayout>
+</LinearLayout>

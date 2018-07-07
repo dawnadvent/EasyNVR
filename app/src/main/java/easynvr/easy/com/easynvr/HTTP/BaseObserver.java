@@ -57,7 +57,9 @@ public abstract class BaseObserver<E> implements Observer<BaseEntity<E>> {
      * 对通用问题的统一拦截处理
      * */
     protected void onHandlerError(String msg, int code) {
-        mDialog.cancel();
+        if (mDialog != null) {
+            mDialog.cancel();
+        }
 
         if (mRefreshLayout != null) {
             mRefreshLayout.finishLoadMore();

@@ -95,7 +95,6 @@ public class VideoControllerView extends FrameLayout implements IMediaController
                 long l = ijk.getReceivedBytes();
                 long received = l - mReceivedBytes;
 
-
                 long packets = ijk.getVideoCachePackets();
                 long recvdPackets = packets - mReceivedPackets;
                 mReceivedBytes = l;

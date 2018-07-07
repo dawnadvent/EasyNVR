@@ -37,7 +37,7 @@ import easynvr.easy.com.easynvr.Model.Channel;
 import easynvr.easy.com.easynvr.Model.Live;
 import easynvr.easy.com.easynvr.NVRApplication;
 import easynvr.easy.com.easynvr.R;
-import easynvr.easy.com.easynvr.View.VideoControllerView;
+import easynvr.easy.com.easynvr.View.VideoControllerView2;
 import easynvr.easy.com.easynvr.databinding.ActivityLiveBinding;
 import io.reactivex.Observable;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
@@ -52,10 +52,12 @@ public class LiveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
     private ActivityLiveBinding mBinding;
     private View mProgress;
 
-    private VideoControllerView mediaController;
+    private VideoControllerView2 mediaController;
     private MediaScannerConnection mScanner;
 
     private GestureDetector detector;
+
+    private Channel channel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +70,7 @@ public class LiveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
         mBinding.liveToolbar.setNavigationIcon(R.mipmap.back);
 
         Intent intent = getIntent();
-        Channel channel = (Channel) intent.getSerializableExtra("channel");
+        channel = (Channel) intent.getSerializableExtra("channel");
         mBinding.toolbarTv.setText(channel.getName());
         getChannelStream(channel.getChannel());
 
@@ -79,7 +81,7 @@ public class LiveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
             IjkMediaPlayer.native_setLogLevel(IjkMediaPlayer.IJK_LOG_DEBUG);
         }
 
-        mediaController = new VideoControllerView(this);
+        mediaController = new VideoControllerView2(this);
         mediaController.setMediaPlayer(mBinding.videoView);
         mBinding.videoView.setMediaController(mediaController);
 
@@ -139,6 +141,20 @@ public class LiveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                 });
     }
 
+    public void ptzcontrol(String command) {
+        Observable<BaseEntity<Object>> observable = RetrofitFactory
+                .getRetrofitService()
+                .ptzcontrol(channel.getChannel(), command, "continuous", "5", "onvif");
+
+        observable.compose(compose(this.<BaseEntity<Object>> bindToLifecycle()))
+                .subscribe(new BaseObserver<Object>(this, null, null) {
+                    @Override
+                    protected void onHandleSuccess(Object msg) {
+
+                    }
+                });
+    }
+
     private void setListener() {
         mBinding.videoView.setOnInfoListener(new IMediaPlayer.OnInfoListener() {
             @Override
@@ -150,7 +166,6 @@ public class LiveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                     case IMediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START:
                         //mTextView.append("\nMEDIA_INFO_VIDEO_RENDERING_START");
                         mProgress.setVisibility(View.GONE);
-                        mBinding.surfaceCover.setVisibility(View.GONE);
                         break;
                     case IMediaPlayer.MEDIA_INFO_BUFFERING_START:
                         //mTextView.append("\nMEDIA_INFO_BUFFERING_START");
@@ -272,8 +287,20 @@ public class LiveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
     }
 
     public void onChangeOritation(View view) {
-        setRequestedOrientation(isLandscape() ?
-                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT : ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        if (isLandscape()) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+            mBinding.liveToolbar.setVisibility(View.VISIBLE);
+
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+            mBinding.liveToolbar.setVisibility(View.GONE);
+
+            int flag = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+            //设置当前窗体为全屏显示
+            getWindow().setFlags(flag, flag);
+        }
     }
 
     public void onChangePlayMode(View view) {

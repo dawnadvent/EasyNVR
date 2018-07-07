@@ -30,11 +30,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         account = helper.readAccount();
 
         /*
-        * 设置默认:http://demo.easynvr.com:10800
+        * 设置默认:http://demo.easynvr.com:10800    192.168.1.111:10800
         * 账号密码：admin    Easydarwin123
         * */
         if (account.getIp().equals("")) {
-            account.setIp("http://demo.easynvr.com");
+//            account.setIp("http://demo.easynvr.com");
+            account.setIp("http://192.168.1.145");
         }
         if (account.getPort().equals("")) {
             account.setPort("10800");
@@ -43,7 +44,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             account.setUserName("admin");
         }
         if (account.getPwd().equals("")) {
-            account.setPwd("Easydarwin123");
+//            account.setPwd("Easydarwin123");
+            account.setPwd("admin");
         }
 
         helper.saveAccount(account);

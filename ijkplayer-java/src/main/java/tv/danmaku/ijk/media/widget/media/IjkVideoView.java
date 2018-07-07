@@ -383,6 +383,7 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         if (mMediaController != null) {
             mMediaController.hide();
         }
+
         mMediaController = controller;
         attachMediaController();
     }
@@ -1240,6 +1241,10 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         }
     }
 
+    public void setVolume(float leftVolume, float rightVolume) {
+        mMediaPlayer.setVolume(leftVolume, rightVolume);
+    }
+
     public void startRecord(String path,int seconds) {
         if (mMediaPlayer == null){
             throw new IllegalStateException("should in play state!");
@@ -1249,7 +1254,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         }
         mMediaPlayer.record(path,seconds);
     }
-
 
     public void stopRecord() {
         if (mMediaPlayer == null){
@@ -1270,15 +1274,15 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
 
     public void setShowing(boolean showing) {
         mShowing = showing;
-        if (mMediaPlayer != null){
+        if (mMediaPlayer != null) {
 //            toggleRender();
-            if (mShowing){
+            if (mShowing) {
                 bindSurfaceHolder(mMediaPlayer, mSurfaceHolder);
 //                mSurfaceHolder.getSurfaceHolder().setFixedSize(mSurfaceWidth,mSurfaceHeight);
 //                mRenderView.getView().layout(0,0,getWidth(),getHeight());
 
                 mRenderView.setAspectRatio(mCurrentAspectRatio);
-            }else{
+            } else {
                 mMediaPlayer.setDisplay(null);
                 mRenderView.setAspectRatio(IRenderView.AR_1_1);
 //                mSurfaceHolder.getSurfaceHolder().setFixedSize(1,1);

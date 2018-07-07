@@ -26,31 +26,26 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/render_container"
-            android:layout_gravity="center"
-            android:background="#000000">
+            android:background="#ecf0f6">
 
             <easynvr.easy.com.easynvr.View.ProVideoView
                 android:id="@+id/video_view"
                 android:layout_width="match_parent"
-                android:keepScreenOn="true"
-                android:layout_height="match_parent" />
-
-            <ImageView
-                android:id="@+id/surface_cover"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#000000"
-                android:scaleType="centerCrop" />
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:keepScreenOn="true"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
                 android:id="@android:id/progress"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
                 android:orientation="vertical">
                 <ProgressBar
                     android:layout_width="wrap_content"
@@ -69,7 +64,8 @@
                 android:id="@+id/player_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_centerHorizontal="true"
+                android:layout_alignBottom="@id/video_view"
                 android:divider="?android:attr/listDivider"
                 android:orientation="vertical"
                 android:showDividers="middle">
@@ -87,7 +83,8 @@
                     android:paddingRight="@dimen/activity_horizontal_margin"
                     android:paddingTop="@dimen/activity_vertical_margin" />
             </LinearLayout>
-        </FrameLayout>
+
+        </RelativeLayout>
     </LinearLayout>
 
 </layout>
